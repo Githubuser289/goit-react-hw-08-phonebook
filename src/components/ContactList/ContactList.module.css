@@ -1,0 +1,14 @@
+ul {
+margin: 5px 0;
+}
+
+li {
+    padding: 4px 0;
+}
+
+.delete {
+    padding: 2px;
+    width: 55px;
+    border: 1px solid darkgrey;
+    font-size: 12px;
+}
