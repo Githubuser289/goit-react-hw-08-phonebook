@@ -15,7 +15,7 @@ function ContactList() {
     <ul>
       {list.map(contact => (
         <li key={contact.id}>
-          {contact.name}: {contact.phone}
+          {contact.name}: {contact.number}
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button
             className={styles.delete}

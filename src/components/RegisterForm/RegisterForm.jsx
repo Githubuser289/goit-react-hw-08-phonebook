@@ -1,12 +1,25 @@
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/authOperations';
+import { logIn, register } from '../../redux/operations';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
+
+    dispatch(
+      logIn({
+        name: 'Iuser Iou',
+        email: 'iuser@mail.com',
+        password: 'iuser1234',
+      })
+    );
+
+    navigate('/login');
+    return;
     dispatch(
       register({
         name: form.elements.name.value,

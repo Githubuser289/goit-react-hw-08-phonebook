@@ -4,9 +4,11 @@ import { Suspense } from 'react';
 import { AuthMenu } from './AuthMenu/AuthMenu';
 import { UserMenu } from './UserMenu/UserMenu';
 import './Layout.css';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../redux/selectors';
 
 export const Layout = () => {
-  let isLoggedIn = false;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 16px' }}>
       <header>

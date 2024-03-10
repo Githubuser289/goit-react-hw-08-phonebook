@@ -1,8 +1,17 @@
-import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/authOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn } from '../../redux/operations';
+import { useNavigate } from 'react-router-dom';
+import { selectIsLoggedIn } from '../../redux/selectors';
+import { useEffect } from 'react';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userLoggedIn = useSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    if (userLoggedIn) navigate('/contacts');
+  }, [userLoggedIn, navigate]);
 
   const handleSubmit = e => {
     e.preventDefault();
