@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { logIn, register } from '../../redux/operations';
+import { register } from '../../redux/operations';
 import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = () => {
@@ -9,17 +9,6 @@ export const RegisterForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-
-    dispatch(
-      logIn({
-        name: 'Iuser Iou',
-        email: 'iuser@mail.com',
-        password: 'iuser1234',
-      })
-    );
-
-    navigate('/login');
-    return;
     dispatch(
       register({
         name: form.elements.name.value,
@@ -28,6 +17,7 @@ export const RegisterForm = () => {
       })
     );
     form.reset();
+    navigate('/login');
   };
 
   return (
