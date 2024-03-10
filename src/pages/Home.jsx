@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { logIn, logOut, register } from '../redux/authOperations';
+import { logIn, logOut } from '../redux/authOperations';
 
 const styles = {
   container: {
