@@ -5,3 +5,9 @@
     flex-direction: column;
     align-items: center;
 }
+
+#registered {
+    padding-top: 30px;
+    margin: 0 auto;
+    text-align: center;
+}

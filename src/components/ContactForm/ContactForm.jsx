@@ -43,13 +43,13 @@ function ContactForm() {
         <br />
         <Typography variant="h6">Please input new contact data</Typography>
         <TextField
-          style={{ width: '200px', margin: '5px' }}
+          style={{ width: '250px', margin: '5px' }}
           type="text"
           label="Name"
           variant="outlined"
         />
         <TextField
-          style={{ width: '200px', margin: '5px' }}
+          style={{ width: '250px', margin: '5px' }}
           type="text"
           label="Phone number"
           variant="outlined"

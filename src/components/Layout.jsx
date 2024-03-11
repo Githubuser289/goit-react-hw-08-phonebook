@@ -25,7 +25,7 @@ export const Layout = () => {
     <div className="layout">
       <Box sx={{ flexGrow: 1 }}>
         <AppBar id="appbar" position="static">
-          <Button color="inherit" onClick={() => navigate('/')}>
+          <Button fontSize="1rem" color="inherit" onClick={() => navigate('/')}>
             Home
           </Button>
           {isLoggedIn ? (

@@ -29,7 +29,7 @@ function Filter() {
       </Typography>
       <TextField
         id="o-form"
-        style={{ width: '200px', margin: '5px' }}
+        style={{ width: '250px', margin: '5px' }}
         type="text"
         variant="outlined"
         onChange={handleFilterChange}
