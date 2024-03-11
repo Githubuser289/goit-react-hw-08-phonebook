@@ -1,6 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { setFilter } from '../../redux/filterSlice';
-import styles from './Filter.module.css';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import './Filter.css';
 
 function Filter() {
   const dispatch = useDispatch();
@@ -11,10 +14,27 @@ function Filter() {
   };
 
   return (
-    <div className={styles.div}>
-      <p>Find contacts by name</p>
-      <input type="text" name="filter" onChange={handleFilterChange} required />
-    </div>
+    <Box
+      component="form"
+      id="filterform"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <br />
+      <Typography variant="h6" className="title">
+        Find contacts by name
+      </Typography>
+      <TextField
+        id="o-form"
+        style={{ width: '200px', margin: '5px' }}
+        type="text"
+        variant="outlined"
+        onChange={handleFilterChange}
+      />
+    </Box>
   );
 }
 

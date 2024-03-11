@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../redux/selectors';
-import styles from './ContactForm.module.css';
 import { addContact } from '../../redux/operations';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import './ContactForm.css';
 
 function ContactForm() {
   const dispatch = useDispatch();
@@ -9,8 +13,9 @@ function ContactForm() {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    let name = evt.target[0].value;
-    let number = evt.target[1].value;
+    const formElems = document.getElementsByTagName('input');
+    let name = formElems[0].value;
+    let number = formElems[1].value;
     if (list.filter(contact => contact.name === name).length > 0) {
       alert(name + ' is already in contacts.');
       return;
@@ -20,37 +25,45 @@ function ContactForm() {
       number: number,
     };
     dispatch(addContact(newContact));
-    document.getElementsByTagName('form')[0].reset();
+    formElems[0].value = '';
+    formElems[1].value = '';
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <div>
-        <span>Name</span>
-        <input
+    <>
+      <Box
+        component="form"
+        id="contactsform"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <br />
+        <Typography variant="h6">Please input new contact data</Typography>
+        <TextField
+          style={{ width: '200px', margin: '5px' }}
           type="text"
-          name="name"
-          pattern="^[a-zA-Z]+((['\-][a-zA-Z])?[a-zA-Z]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          autoComplete="off"
-          required
+          label="Name"
+          variant="outlined"
         />
-      </div>
-
-      <div>
-        <span>Number</span>
-        <input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          autoComplete="off"
-          required
+        <TextField
+          style={{ width: '200px', margin: '5px' }}
+          type="text"
+          label="Phone number"
+          variant="outlined"
         />
-      </div>
-
-      <button type="submit">Add contact</button>
-    </form>
+        <Button
+          variant="contained"
+          color="primary"
+          size="medium"
+          onClick={handleSubmit}
+        >
+          Add contact
+        </Button>
+      </Box>
+    </>
   );
 }
 

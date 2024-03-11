@@ -3,6 +3,11 @@ import { logIn } from '../../redux/operations';
 import { useNavigate } from 'react-router-dom';
 import { selectIsLoggedIn } from '../../redux/selectors';
 import { useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import './LoginForm.css';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -15,27 +20,50 @@ export const LoginForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const form = e.currentTarget;
+    const formElems = document.getElementsByTagName('input');
     dispatch(
       logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        email: formElems[0].value,
+        password: formElems[1].value,
       })
     );
-    form.reset();
+    formElems[0].value = '';
+    formElems[1].value = '';
   };
-
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <Box
+      component="form"
+      id="loginform"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <br />
+      <Typography variant="h6">Please enter login data</Typography>
+      <TextField
+        style={{ width: '200px', margin: '5px' }}
+        type="text"
+        label="Email"
+        variant="outlined"
+      />
+      <br />
+      <TextField
+        style={{ width: '200px', margin: '5px' }}
+        type="password"
+        label="Password"
+        variant="outlined"
+      />
+      <br />
+      <Button
+        variant="contained"
+        color="primary"
+        size="medium"
+        onClick={handleSubmit}
+      >
+        Login
+      </Button>
+    </Box>
   );
 };

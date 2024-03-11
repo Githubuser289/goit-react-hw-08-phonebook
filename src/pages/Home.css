@@ -1,0 +1,15 @@
+.homediv {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homediv img {
+    width: 360px;
+    opacity: 0.2;
+}
+
+.textdiv {
+    padding-top: 30px;
+    text-align: center;
+}

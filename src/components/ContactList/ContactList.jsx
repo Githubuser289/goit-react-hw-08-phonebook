@@ -1,32 +1,62 @@
-import styles from './ContactList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectVisibleContacts } from '../../redux/selectors';
 import { deleteContact } from '../../redux/operations';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import IconButton from '@mui/material/IconButton';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import DeleteIcon from '@mui/icons-material/Delete';
+import './ContactList.css';
 
 function ContactList() {
   const dispatch = useDispatch();
   let list = useSelector(selectVisibleContacts);
 
   function handleClick(evt) {
-    dispatch(deleteContact(evt.target.id));
+    const elem = evt.target.parentElement;
+    dispatch(deleteContact(elem.id));
   }
 
   return (
-    <ul>
-      {list.map(contact => (
-        <li key={contact.id}>
-          {contact.name}: {contact.number}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button
-            className={styles.delete}
-            onClick={handleClick}
-            id={contact.id}
-          >
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
+    <Box
+      component="form"
+      id="contactslist"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        {list.map(contact => {
+          const labelId = `checkbox-list-label-${contact.name}`;
+
+          return (
+            <ListItem
+              key={contact.id}
+              secondaryAction={
+                <IconButton
+                  edge="end"
+                  aria-label="delete"
+                  onClick={handleClick}
+                >
+                  <DeleteIcon id={contact.id} />
+                </IconButton>
+              }
+              disablePadding
+            >
+              <ArrowRightIcon />
+              <ListItemText
+                id={labelId}
+                primary={`${contact.name}: ${contact.number}`}
+              />
+            </ListItem>
+          );
+        })}
+      </List>
+    </Box>
   );
 }
 

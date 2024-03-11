@@ -1,10 +1,13 @@
-.navbar {
+#appbar {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 15px;
 }
-.navbar div {
+#appbar div {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     gap: 20px;
 }
