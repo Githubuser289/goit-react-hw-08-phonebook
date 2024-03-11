@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 0 15px;
+    font-size: 1rem;
 }
 #appbar div {
     display: flex;
