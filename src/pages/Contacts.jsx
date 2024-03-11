@@ -20,7 +20,7 @@ export default function Contacts() {
       return;
     }
     dispatch(fetchContacts());
-  }, [isLoggedIn, dispatch]);
+  }, [isLoggedIn, dispatch, navigate]);
 
   return (
     <>
